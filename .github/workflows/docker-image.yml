@@ -55,6 +55,7 @@ jobs:
         echo ::set-output name=tags::${TAGS}
         echo ::set-output name=gcr_tags::${GCR_TAGS}
         echo ::set-output name=cloudrun_service::${SERVICE_NAME}
+        echo ::set-output name=version::${VERSION}
 
     - name: Line notification start
       uses: snow-actions/line-notify@v1.0.0
