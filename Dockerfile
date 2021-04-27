@@ -15,8 +15,10 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0
 
 WORKDIR /app
 COPY --from=build /app .
+
+RUN chmod 755 run.bash
 RUN ls -alrt
 
-ENTRYPOINT ["dotnet", "tm-frontend.dll"]
+ENTRYPOINT ["./run.bash"]
 
 EXPOSE 5000
