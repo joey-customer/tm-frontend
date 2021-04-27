@@ -21,4 +21,4 @@ RUN ls -alrt
 
 ENTRYPOINT ["./run.bash"]
 
-EXPOSE 5000
+EXPOSE 8080
