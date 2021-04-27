@@ -17,6 +17,6 @@ WORKDIR /app
 COPY --from=build /app .
 RUN ls -alrt
 
-ENTRYPOINT ["./tm-frontend"]
+ENTRYPOINT ["dotnet", "tm-frontend.dll"]
 
 EXPOSE 5000
