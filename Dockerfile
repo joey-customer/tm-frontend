@@ -19,7 +19,6 @@ WORKDIR /app
 COPY --from=build /app .
 
 RUN ls -alrt
+EXPOSE 8080
 
 ENTRYPOINT ["./run.bash"]
-
-EXPOSE 8080
