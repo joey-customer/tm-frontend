@@ -1,4 +1,4 @@
 #!/bin/bash
 
-export ASPNETCORE_URLS="https://localhost:${PORT}"
+export ASPNETCORE_URLS="http://localhost:${PORT}"
 dotnet tm-frontend.dll
