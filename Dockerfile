@@ -10,6 +10,7 @@ RUN dotnet restore
 COPY * .
 RUN dotnet publish -c release -o /app --no-restore 
 RUN cp run.bash /app
+RUN ls -alrt /app
 
 # final stage/image
 FROM mcr.microsoft.com/dotnet/aspnet:5.0
