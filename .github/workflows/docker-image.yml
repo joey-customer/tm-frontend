@@ -89,18 +89,18 @@ jobs:
         load: false
         tags: ${{ steps.prep.outputs.gcr_tags }}
 
-    # Configure gcloud CLI
-    - name: gcloud Set up
-      run: |
-          gcloud config set project $DEPLOY_PROJECT_ID
+#    # Configure gcloud CLI
+#    - name: gcloud Set up
+#      run: |
+#          gcloud config set project $DEPLOY_PROJECT_ID
     
-    # Deploy image to Cloud Run
-    - name: Deploy
-      run: |
-          gcloud run deploy ${{ steps.prep.outputs.cloudrun_service }} \
-            --region $RUN_REGION \
-            --image ${{ steps.prep.outputs.gcr_tags }} \
-            --platform managed
+#    # Deploy image to Cloud Run
+#    - name: Deploy
+#      run: |
+#          gcloud run deploy ${{ steps.prep.outputs.cloudrun_service }} \
+#            --region $RUN_REGION \
+#            --image ${{ steps.prep.outputs.gcr_tags }} \
+#            --platform managed
 
     - name: show job status
       if: always()
