@@ -1,9 +1,24 @@
-FROM busybox:latest
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 
-LABEL maintainer="Seubpong Monsar"
+WORKDIR /source
 
-ADD index.html /www/index.html
-RUN echo "<h1>Hello World !!!!</h1>" >> /www/index.html
+# copy csproj and restore as distinct layers
+COPY tm-frontend.sln .
+COPY tm-frontend/. ./tm-frontend
+COPY tm-frontend-test/. ./tm-frontend-test
 
-# Create a basic webserver and run it until the container is stopped
-CMD trap "exit 0;" TERM INT; httpd -p ${PORT} -h /www -f & wait 
+RUN dotnet restore
+RUN dotnet publish -c release -o /app --no-restore 
+COPY run.bash /app
+RUN ls -alrt /app
+
+# final stage/image
+FROM mcr.microsoft.com/dotnet/aspnet:5.0
+
+WORKDIR /app
+COPY --from=build /app .
+
+RUN ls -alrt
+EXPOSE 8080
+
+ENTRYPOINT ["./run.bash"]
