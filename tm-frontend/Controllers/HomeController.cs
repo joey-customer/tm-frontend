@@ -20,6 +20,26 @@ namespace tm_frontend.Controllers
 
         public IActionResult Index()
         {
+            Console.WriteLine("Login page");
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index(string username, string password)
+        {
+            Console.WriteLine("Login page (Post)");
+            Console.WriteLine("username=" + username);
+            Console.WriteLine("password=" + password);
+            if ("user1".Equals(username) && "1234".Equals(password))
+            {
+                Console.WriteLine("Logged on with user1");
+                return View("Page1");
+            }
+            else if ("user2".Equals(username) && "1234".Equals(password))
+            {
+                Console.WriteLine("Logged on with user2");
+                return View("Page2");
+            }
             return View();
         }
 
